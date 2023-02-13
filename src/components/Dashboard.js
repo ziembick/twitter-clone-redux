@@ -1,7 +1,6 @@
 import { connect } from "react-redux";
 
 const Dashboard = (props) => {
-  console.log(props);
   return (
     <div>
       <h3 className="center">Your Timeline</h3>
