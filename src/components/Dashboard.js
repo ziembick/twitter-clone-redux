@@ -1,8 +1,19 @@
 import { connect } from "react-redux";
 
 const Dashboard = (props) => {
-    console.log(props)
-  return <div>Dashboard</div>;
+  console.log(props);
+  return (
+    <div>
+      <h3 className="center">Your Timeline</h3>
+      <ul className="dashboard-list">
+        {props.tweetIds.map((id) => (
+          <li key={id}>
+            <div>TWEET ID: {id}</div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
 };
 
 const mapStateToProps = ({ tweets }) => ({
