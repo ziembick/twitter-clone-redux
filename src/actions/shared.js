@@ -1,9 +1,9 @@
-import { getInitialData} from "../utils/api"
+import { getInitialData } from "../utils/api";
 
-export function handleInitialData () {
-    return (dispatch) => {
-        return getInitialData().then (({users, tweets}) => {
-            
-        })
-    }
+export function handleInitialData() {
+  return (dispatch) => {
+    return getInitialData().then(({ users, tweets }) => {
+        
+    });
+  };
 }
