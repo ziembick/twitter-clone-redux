@@ -6,20 +6,14 @@ import {
   TiHeartFullOutline,
 } from "react-icons/ti";
 import { handleToggleTweet } from "../actions/tweets";
-import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-const withRouter = (Component) => {
-  const ComponentWithRouterProp = (props) => {
-    let location = useLocation();
-    let navigate = useNavigate();
-    let params = useParams();
-    return <Component {...props} router={{ location, navigate, params }} />;
-  };
 
-  return ComponentWithRouterProp;
-};
 
 const Tweet = (props) => {
+  const navigate = useNavigate()
+
+
   const handleLike = (e) => {
     e.preventDefault();
 
@@ -36,7 +30,7 @@ const Tweet = (props) => {
 
   const toParent = (e, id) => {
     e.preventDefault();
-
+    navigate(`/tweet/${id}`)
     // TODO: Redirect to parent Tweet
   };
 
@@ -102,4 +96,4 @@ const mapStateToProps = ({ authedUser, users, tweets }, { id }) => {
   };
 };
 
-export default withRouter(connect(mapStateToProps)(Tweet));
+export default connect(mapStateToProps)(Tweet);
