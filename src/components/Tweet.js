@@ -1,12 +1,22 @@
 import { connect } from "react-redux";
 import { formatTweet } from "../utils/helpers";
+import {
+  TiArrowBackOutline,
+  TiHeartOutline,
+  TiHeartFullOutline,
+} from "react-icons";
 
 const Tweet = (props) => {
   if (props.tweet === null) {
     return <p>This Tweet doesn't exist</p>;
   }
 
-  return <div className="tweet"></div>;
+  const { name, avatar, timestamp, text, hasLiked, likes, replies, parents } =
+    props.tweet;
+
+  return <div className="tweet">
+    <img src={avatar} alt={`Avatar of ${name}`} className="avatar"/>
+  </div>;
 };
 
 const mapStateToProps = ({ authedUser, users, tweets }, { id }) => {
