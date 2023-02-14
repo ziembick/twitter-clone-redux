@@ -25,6 +25,7 @@ const NewTweet = () => {
     <div>
       <h3 className="center">Compose new Tweet</h3>
       <form className="new-tweet" onSubmit={handleSubmit}>
+        
         <textarea
           placeholder="What's happening?"
           value={text}
