@@ -3,8 +3,8 @@ import { connect } from "react-redux";
 import { handleInitialData } from "../actions/shared";
 import Dashboard from "./Dashboard";
 import NewTweet from "./NewTweet";
+import TweetPage from "./TweetPage";
 import { LoadingBar } from "react-redux-loading-bar";
-
 
 const App = (props) => {
   useEffect(() => {
@@ -13,7 +13,13 @@ const App = (props) => {
   return (
     <div>
       <LoadingBar />
-      {props.loading === true ? null : <NewTweet />}
+      {props.loading === true ? null : (
+        <TweetPage
+          match={{
+            params: { id: "8xf0y6ziyjabvozdd253nd" },
+          }}
+        />
+      )}
     </div>
   );
 };
