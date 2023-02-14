@@ -10,16 +10,35 @@ const NewTweet = () => {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
     // TODO: Add Tweet to store
 
-    console.log("New Tweet: ", text)
+    console.log("New Tweet: ", text);
 
-    setText("")
-  }
+    setText("");
+  };
 
-  return <div>New Tweet</div>;
+  const tweetLeft = 280 - text.length;
+
+  return (
+    <div>
+      <h3 className="center">Compose new Tweet</h3>
+      <form className="new-tweet" onSubmit={handleSubmit}>
+        <textarea
+          placeholder="What's happening?"
+          value={text}
+          onChange={handleChange}
+          className="textarea"
+          maxLength={280}
+        />
+        {tweetLeft <= 100 && <div className="tweet-lenght">{tweetLeft}</div>}
+        <button className="btn" type="submit" disabled={text === ""}>
+          Submit
+        </button>
+      </form>
+    </div>
+  );
 };
 
 export default NewTweet;
