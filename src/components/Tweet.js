@@ -6,6 +6,18 @@ import {
   TiHeartFullOutline,
 } from "react-icons/ti";
 import { handleToggleTweet } from "../actions/tweets";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
+
+const withRouter = (Component) => {
+  const ComponentWithRouterProp = (props) => {
+    let location = useLocation();
+    let navigate = useNavigate();
+    let params = useParams();
+    return <Component {...props} router={{ location, navigate, params }} />;
+  };
+
+  return ComponentWithRouterProp;
+};
 
 const Tweet = (props) => {
   const handleLike = (e) => {
@@ -32,11 +44,20 @@ const Tweet = (props) => {
     return <p>This Tweet doesn't exist</p>;
   }
 
-  const { name, avatar, timestamp, text, hasLiked, likes, replies, parent } =
-    props.tweet;
+  const {
+    name,
+    avatar,
+    timestamp,
+    text,
+    hasLiked,
+    likes,
+    replies,
+    parent,
+    id,
+  } = props.tweet;
 
   return (
-    <div className="tweet">
+    <Link to={`/tweet/${id}`} className="tweet">
       <img src={avatar} alt={`Avatar of ${name}`} className="avatar" />
       <div className="tweet-info">
         <div>
@@ -65,7 +86,7 @@ const Tweet = (props) => {
           <span>{likes !== 0 && likes}</span>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 
@@ -81,4 +102,4 @@ const mapStateToProps = ({ authedUser, users, tweets }, { id }) => {
   };
 };
 
-export default connect(mapStateToProps)(Tweet);
+export default withRouter(connect(mapStateToProps)(Tweet));
