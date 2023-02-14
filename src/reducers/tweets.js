@@ -1,4 +1,3 @@
-import { act } from "react-dom/test-utils";
 import { RECEIVE_TWEETS, TOGGLE_TWEET } from "../actions/tweets";
 
 export default function tweets(state = {}, action) {
